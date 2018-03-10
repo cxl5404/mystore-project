@@ -2,67 +2,78 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
-    {% load staticfiles %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+<head>
+  {% load staticfiles %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Chengwei Lin</title>
+  <title>Chengwei Lin</title>
 
-    <!-- Bootstrap core CSS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Bootstrap core CSS -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!-- Custom styles for this template -->
-    <link href="album.css" rel="stylesheet">
-  </head>
+  <!-- Custom styles for this template -->
+  <link href="album.css" rel="stylesheet">
+</head>
 
-  <body>
+<body>
 
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
         <a class="navbar-brand font-weight-bold font-italic" href="#"><img src="{% static 'logo.png' %}" height=30 width=30 class="d-inllie-block alighn-top">  Product Hunt</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
             <li class="nav-item ">
-              <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> &nbsp;Sign Up</a>
+              <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}" onclick=""><i class="fas fa-sign-out-alt"></i> &nbsp;Logout</a>
+              <form id="logout" method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <input type="hidden">
+              </form>
             </li>
+            {% else %}
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'signup' %}"><i class="fas fa-user-plus"></i> &nbsp;Sign Up</a>
+            </li>
+            &nbsp;&nbsp;
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i> &nbsp;Login</a>
+              <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> &nbsp;Login</a>
             </li>
+            {% endif %}
           </ul>
         </div>
       </div>
-      </nav>
-    </header>
+    </nav>
+  </header>
 
-    <div class="container">
+  <div class="container">
 
-      {% block content %}
-      {% endblock %}
+    {% block content %}
+    {% endblock %}
 
+  </div>
+
+
+
+  <footer class="text-muted">
+    <div class="container text-center">
+      <p>&#169; Product Hunt {% now 'Y' %}</p>
     </div>
+  </footer>
 
-
-
-    <footer class="text-muted">
-      <div class="container text-center">
-        <p>&#169; Product Hunt {% now 'Y' %}</p>
-      </div>
-    </footer>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
 </html>
