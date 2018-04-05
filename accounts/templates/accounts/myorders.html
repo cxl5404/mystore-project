@@ -1,0 +1,89 @@
+{% extends 'shop/base_2.html' %}
+{% load staticfiles %}
+{% block  content %}
+
+<br><br>
+<div class="container">
+  <p class="h4 text-center mb-4">Order History</p>
+  <!--Table-->
+  <table class="table">
+    <!--Table head-->
+    <thead>
+      <tr>
+        <th>Order #</th>
+        <th>Date Purchased</th>
+        <th>Status</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+      {% for order in orders.all reversed %}
+      <tr>
+        <th scope="row">{{ order.id }}</th>
+        <td>{{order.created}}</td>
+        <td>Order Placed</td>
+        <td>${{ order.get_total_cost }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <!--Table body-->
+
+  </table>
+  <!--Table-->
+  <br>
+  <hr>
+  <!--Section: Features v.1-->
+  <section class="text-center">
+
+
+    <!--Grid row-->
+    <div class="row">
+
+      <!--Grid column-->
+      <div class="col-md-4">
+        <i class="fa fa-truck fa-3x grey-text"></i>
+        <h5 class="font-weight-bold mt-3">Free Shipping</h5>
+        <p class="grey-text">Free shipping for all orders over $100</p>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-md-4">
+        <i class="fa fa-refresh fa-3x grey-text"></i>
+        <h5 class="font-weight-bold mt-3">Money Back Guarantee</h5>
+        <p class="grey-text">We return money within 30 days</p>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-md-4">
+        <i class="fa fa-comments-o fa-3x grey-text"></i>
+        <h5 class="font-weight-bold mt-3">24/7 Customer Support</h5>
+        <p class="grey-text">Friendly 24/7 customer support</p>
+      </div>
+      <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+  </section>
+  <!--Section: Features v.1-->
+
+</div>
+
+{% endblock %}
+
+
+
+
+<ul class="list-group">
+  {% for order in orders.all reversed %}
+  {{order.created}}
+  {% for item in order.items.all %}
+  <li class="list-group-item">{{ item.product.name }}</li>
+  {% endfor %}
+  {% endfor %}
+</ul>

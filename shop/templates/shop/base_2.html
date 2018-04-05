@@ -1,0 +1,268 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Simpe Studio</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="/static/css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="/static/css/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand font-weight-bold font-italic" href="{% url "shop:product_list" %}"><img src="{% static 'shopping-bag.png' %}" height=35 width=35 class="d-inllie-block alighn-top">
+        <strong>Soga Store</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link waves-effect" href="#">首页
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="#">美食馆</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="#" >美妆馆</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="#" >生活馆</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="#">养生馆</a>
+          </li>
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            {% with total_items=cart|length %}
+                {% if cart|length > 0 %}
+                <a href="{% url "cart:cart_detail" %}" class="nav-link waves-effect">
+                  <i class="fa fa-shopping-cart"></i>
+                  <span class="badge pink lighten-3 z-depth-1 mr-1"> {{ total_items }} item{{ total_items|pluralize }}, ${{ cart.get_total_price }} </span>
+                </a>
+                {% else %}
+                <a class="nav-link waves-effect">
+                  <i class="fa fa-shopping-cart"></i>
+                  <span class="badge red z-depth-1 mr-1"> 0 </span>
+                </a>
+                {% endif %}
+            {% endwith %}
+          </li>
+          {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'myorders' %}" onclick=""><i class="fa fa-shopping-bag"></i> &nbsp;My Orders </a> &nbsp;&nbsp;
+            <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}" onclick=""><i class="fa fa-sign-out"></i>&nbsp;Logout</a>
+            <form id="logout" method="POST" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <input type="hidden">
+            </form>
+          {% else %}
+          <li class="nav-item">
+            <a href="{% url 'login' %}" class="nav-link waves-effect">
+              <i class="fa fa-sign-in" aria-hidden="true"></i> 登陆
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'signup' %}" class="nav-link waves-effect"
+              >
+              <i class="fa fa-user-plus" aria-hidden="true"></i> 注册
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  <!-- Navbar -->
+<br>
+<br>
+  <!--Main layout-->
+  <main>
+      {% block content %}
+      {% endblock %}
+  </main>
+  <!--Main layout-->
+
+
+  <!--Footer-->
+  <footer class="page-footer font-small blue-grey lighten-5 pt-0 ">
+
+      <div style="background-color:#f48fb1;">
+          <div class="container">
+              <!--Grid row-->
+              <div class="row py-4 d-flex align-items-center">
+
+                  <!--Grid column-->
+                  <div class="col-12 col-md-5 text-left mb-4 mb-md-0">
+                      <h6 class="mb-0 white-text text-center text-md-left">
+                          <strong>Get connected with us on social networks!</strong>
+                      </h6>
+                  </div>
+                  <!--Grid column-->
+
+                  <!--Grid column-->
+                  <div class="col-12 col-md-7 text-center text-md-right">
+                      <!--Facebook-->
+                      <a class="fb-ic ml-0">
+                          <i class="fa fa-facebook white-text mr-lg-4"> </i>
+                      </a>
+                      <!--Twitter-->
+                      <a class="tw-ic">
+                          <i class="fa fa-twitter white-text mr-lg-4"> </i>
+                      </a>
+                      <!--Google +-->
+                      <a class="gplus-ic">
+                          <i class="fa fa-google-plus white-text mr-lg-4"> </i>
+                      </a>
+                      <!--Linkedin-->
+                      <a class="li-ic">
+                          <i class="fa fa-linkedin white-text mr-lg-4"> </i>
+                      </a>
+                      <!--Instagram-->
+                      <a class="ins-ic">
+                          <i class="fa fa-instagram white-text mr-lg-4"> </i>
+                      </a>
+                  </div>
+                  <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+          </div>
+      </div>
+
+      <!--Footer Links-->
+      <div class="container mt-5 mb-4 text-center text-md-left ">
+          <div class="row mt-3">
+
+              <!--First column-->
+              <div class="col-md-3 col-lg-4 col-xl-3 mb-4 dark-grey-text">
+                  <h6 class="text-uppercase font-weight-bold">
+                      <strong>Simple Studio</strong>
+                  </h6>
+                  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                  <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit
+                      amet, consectetur adipisicing elit.</p>
+              </div>
+              <!--/.First column-->
+
+              <!--Second column-->
+              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
+                  <h6 class="text-uppercase font-weight-bold">
+                      <strong>Products</strong>
+                  </h6>
+                  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                  <p>
+                      <a href="#!" class="dark-grey-text">MDBootstrap</a>
+                  </p>
+                  <p>
+                      <a href="#!" class="dark-grey-text">MDWordPress</a>
+                  </p>
+                  <p>
+                      <a href="#!" class="dark-grey-text">BrandFlow</a>
+                  </p>
+                  <p>
+                      <a href="#!" class="dark-grey-text">Bootstrap Angular</a>
+                  </p>
+              </div>
+              <!--/.Second column-->
+
+              <!--Third column-->
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
+                  <h6 class="text-uppercase font-weight-bold">
+                      <strong>Useful links</strong>
+                  </h6>
+                  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                  <p>
+                      <a href="#!" class="dark-grey-text">Your Account</a>
+                  </p>
+                  <p>
+                      <a href="#!" class="dark-grey-text">Become an Affiliate</a>
+                  </p>
+                  <p>
+                      <a href="#!" class="dark-grey-text">Shipping Rates</a>
+                  </p>
+                  <p>
+                      <a href="#!" class="dark-grey-text">Help</a>
+                  </p>
+              </div>
+              <!--/.Third column-->
+
+              <!--Fourth column-->
+              <div class="col-md-4 col-lg-3 col-xl-3 dark-grey-text ">
+                  <h6 class="text-uppercase font-weight-bold">
+                      <strong>Contact</strong>
+                  </h6>
+                  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                  <p>
+                      <i class="fa fa-home mr-3"></i> New York, NY 10012, US</p>
+                  <p>
+                      <i class="fa fa-envelope mr-3"></i> info@example.com</p>
+                  <p>
+                      <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
+                  <p>
+                      <i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
+              </div>
+              <!--/.Fourth column-->
+
+          </div>
+      </div>
+      <!--/.Footer Links-->
+
+      <!-- Copyright-->
+      <div class="footer-copyright py-3 text-center pink lighten-3">
+          © 2018 Copyright:
+          <a href="#">
+              <strong> Simple Studio</strong>
+          </a>
+      </div>
+      <!--/.Copyright -->
+
+  </footer>
+  <!--/.Footer-->
+
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="/static/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="/static/js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+{% extends "shop/base_2.html" %}
+{% load static %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+{% block content %}
+
+    <!--Main layout-->
+    <main class="mt-5 pt-4">
+      <div class="container dark-grey-text mt-5">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4">
+
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" class="img-fluid" alt="">
+
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4">
+
+            <!--Content-->
+            <div class="p-4">
+
+              <div class="mb-3">
+                <a href="">
+                  <span class="badge purple mr-1">{{ product.category }}</span>
+                </a>
+                <a href="">
+                  <span class="badge blue mr-1">New</span>
+                </a>
+                <a href="">
+                  <span class="badge red mr-1">Bestseller</span>
+                </a>
+              </div>
+
+              <p class="lead">
+                <span class="mr-1">
+                  <del>$200</del>
+                </span>
+                <span>${{ product.price }}</span>
+              </p>
+
+              <p class="lead font-weight-bold">{{ product.name }}</p>
+
+              <p>{{ product.description }}</p>
+
+              <form action="{% url "cart:cart_add" product.id %}" class="d-flex justify-content-left" method="post">
+                <!-- Default input -->
+
+                {{ cart_product_form }}
+
+                {% csrf_token %}
+
+                <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+                  <i class="fa fa-shopping-cart ml-1"></i>
+                </button>
+
+              </form>
+
+            </div>
+            <!--Content-->
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+        <hr>
+
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center wow fadeIn">
+
+          <!--Grid column-->
+          <div class="col-md-6 text-center">
+
+            <h4 class="my-4 h4">Additional information</h4>
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit voluptates,
+              quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+      </div>
+    </main>
+    <!--Main layout-->
+
+{% endblock %}
+
+
+<div class="product-detail">
+    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+    <h1>{{ product.name }}</h1>
+    <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
+    <p class="price">${{ product.price }}</p>
+    <form action="{% url "cart:cart_add" product.id %}" method="post">
+        {{ cart_product_form }}
+        {% csrf_token %}
+        <input type="submit" value="Add to cart">
+    </form>
+    {{ product.description|linebreaks }}
+</div>

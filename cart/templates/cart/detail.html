@@ -1,0 +1,150 @@
+{% extends "shop/base_2.html" %}
+{% load static %}
+
+{% block title %}
+    Your shopping cart
+{% endblock %}
+
+{% block content %}
+
+<!--Main layout-->
+<main class="mt-5 pt-4">
+  <div class="container wow fadeIn">
+
+    <!--Grid row-->
+    <div class="row">
+
+      <!--Grid column-->
+      <div class="col-md-8 mb-4">
+
+        <!-- Heading -->
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Your cart</span>
+          {% with total_items=cart|length %}
+          <span class="badge pink lighten-3 badge-pill">{{ total_items }}</span>
+          {% endwith %}
+        </h4>
+
+        <!-- Cart -->
+        <ul class="list-group mb-3 z-depth-1">
+          {% for item in cart %}
+              {% with product=item.product %}
+
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">${{ item.price }}/each x {{ item.quantity}}</h6>
+              <small class="text-muted">{{ product.name }}</small>
+            </div>
+            <span class="text-muted"><a href="{% url "cart:cart_remove" product.id %}"><i class="fa fa-times" aria-hidden="true"></i></a></span>
+            <span class="text-muted">&nbsp;&nbsp;</span>
+            <span class="text-muted"> ${{ item.total_price }}</span>
+          </li>
+          {% endwith %}
+      {% endfor %}
+      <li class="list-group-item d-flex justify-content-between">
+        <span></span>
+        <strong><a href="{% url "shop:product_list" %}" >Continue shopping </a></strong>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span></span>
+        <a href="{% url "orders:order_create" %}"> Checkout</a>
+      </li>
+        </ul>
+        <!-- Cart -->
+
+
+
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-md-4 mb-4">
+
+        <!-- Heading -->
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Total</span>
+          <span class="text-success"><h6>满$35免运费</h6></span>
+        </h4>
+
+        <!-- Cart -->
+        <ul class="list-group mb-3 z-depth-1">
+          <li class="list-group-item d-flex justify-content-between bg-light">
+            <div class="text-success">
+              <h6 class="my-0">Promo code</h6>
+              <small>EXAMPLECODE</small>
+            </div>
+            <span class="text-success">-$5</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total (USD)</span>
+            <strong>${{ cart.get_total_price }}</strong>
+          </li>
+        </ul>
+        <!-- Cart -->
+
+        <!-- Promo code -->
+        <form class="card p-2">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Promo code">
+            <div class="input-group-append">
+              <button type="submit" class="btn pink lighten-3">Redeem</button>
+            </div>
+          </div>
+        </form>
+        <!-- Promo code -->
+
+      </div>
+      <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+  </div>
+
+</main>
+<!--Main layout-->
+<br>
+
+<div class="container">
+
+<!--Section: Features v.1-->
+<section class="text-center">
+
+
+    <!--Grid row-->
+    <div class="row">
+
+    <!--Grid column-->
+    <div class="col-md-4">
+        <i class="fa fa-truck fa-3x grey-text"></i>
+        <h5 class="font-weight-bold mt-3">Free Shipping</h5>
+        <p class="grey-text">Free shipping for all orders over $100</p>
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-md-4">
+        <i class="fa fa-refresh fa-3x grey-text"></i>
+        <h5 class="font-weight-bold mt-3">Money Back Guarantee</h5>
+        <p class="grey-text">We return money within 30 days</p>
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-md-4">
+        <i class="fa fa-comments-o fa-3x grey-text"></i>
+        <h5 class="font-weight-bold mt-3">24/7 Customer Support</h5>
+        <p class="grey-text">Friendly 24/7 customer support</p>
+    </div>
+    <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+</section>
+<!--Section: Features v.1-->
+
+
+</div>
+
+{% endblock %}

@@ -1,6 +1,37 @@
-{% extends 'base.html' %}
-
+{% extends 'shop/base_2.html' %}
+{% load staticfiles %}
 {% block  content %}
+
+<style>
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+</style>
+<br>
+<br>
 <br>
 {% if error %}
 <div class="alert alert-danger" role="alert">
@@ -8,21 +39,69 @@
 </div>
 {% endif %}
 
-<br>
-<h2 align="center">Login</h2>
-<br>
-<form method="POST" action="{% url 'login' %}">
-  {% csrf_token %}
-  Username:
-  <br>
-  <input type="text" name="username" class="form-control"/>
-  <br>
-  Password:
-  <br>
-  <input type="password" name="password" class="form-control"/>
-  <br>
-  <div class="row justify-content-center">
-    <input class="btn btn-primary" type="submit" value="Sign Up" >
+<div class="container">
+  <p class="h4 text-center mb-4">Login</p>
+<div class="card">
+  <div class="card-body">
+    <form class="form-signin" method="POST" action="{% url 'login' %}">
+      {% csrf_token %}
+      <!-- Material input text -->
+      <div class="md-form">
+          <i class="fa fa-user prefix grey-text"></i>
+          <input type="email" id="username"  name="username" class="form-control">
+          <label for="user">Email</label>
+      </div>
+      <!-- Material input password -->
+      <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input type="password" id="password" name="password" class="form-control">
+          <label for="password">Your password</label>
+      </div>
+      <!-- Material input password -->
+      <div class="text-center mt-4">
+          <button class="btn btn-default" type="submit">Login</button>
+      </div>
+    </form>
   </div>
-</form>
+</div>
+<br>
+
+<!--Section: Features v.1-->
+<section class="text-center">
+
+
+    <!--Grid row-->
+    <div class="row">
+
+    <!--Grid column-->
+    <div class="col-md-4">
+        <i class="fa fa-truck fa-3x grey-text"></i>
+        <h5 class="font-weight-bold mt-3">Free Shipping</h5>
+        <p class="grey-text">Free shipping for all orders over $100</p>
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-md-4">
+        <i class="fa fa-refresh fa-3x grey-text"></i>
+        <h5 class="font-weight-bold mt-3">Money Back Guarantee</h5>
+        <p class="grey-text">We return money within 30 days</p>
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-md-4">
+        <i class="fa fa-comments-o fa-3x grey-text"></i>
+        <h5 class="font-weight-bold mt-3">24/7 Customer Support</h5>
+        <p class="grey-text">Friendly 24/7 customer support</p>
+    </div>
+    <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+</section>
+<!--Section: Features v.1-->
+
+</div>
 {% endblock %}
