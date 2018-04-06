@@ -40,7 +40,7 @@
 {% endif %}
 
 <div class="container">
-  <p class="h4 text-center mb-4">Login</p>
+  <p class="h4 text-center mb-4">已有账户？</p>
 <div class="card">
   <div class="card-body">
     <form class="form-signin" method="POST" action="{% url 'login' %}">
@@ -49,18 +49,20 @@
       <div class="md-form">
           <i class="fa fa-user prefix grey-text"></i>
           <input type="email" id="username"  name="username" class="form-control">
-          <label for="user">Email</label>
+          <label for="user">邮箱</label>
       </div>
       <!-- Material input password -->
       <div class="md-form">
           <i class="fa fa-lock prefix grey-text"></i>
           <input type="password" id="password" name="password" class="form-control">
-          <label for="password">Your password</label>
+          <label for="password">密码</label>
       </div>
       <!-- Material input password -->
       <div class="text-center mt-4">
-          <button class="btn btn-default" type="submit">Login</button>
+          <button class="btn btn-default" type="submit">登陆</button>
       </div>
+      <br>
+      <p class="text-center"><a href="#"><u>忘记密码？</u></a></p>
     </form>
   </div>
 </div>

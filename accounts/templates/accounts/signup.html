@@ -39,7 +39,7 @@
 {% endif %}
 
  <div class="container">
-   <p class="h4 text-center mb-4">Create a New Account</p>
+   <p class="h4 text-center mb-4">新用户？</p>
 <div class="card">
   <div class="card-body">
 <form class="form-signin" method="POST" action="{% url 'signup' %}">
@@ -48,30 +48,30 @@
   <div class="md-form">
       <i class="fa fa-user prefix grey-text"></i>
       <input type="email" id="username"  name="username" class="form-control">
-      <label for="username">Email</label>
+      <label for="username">邮箱</label>
   </div>
 
   <div class="md-form">
       <i class="fa fa-exclamation-triangle prefix grey-text"></i>
       <input type="email" id="email"  name="username2" class="form-control">
-      <label for="email">Confirm your Email</label>
+      <label for="email">再次输入邮箱</label>
   </div>
 
 <!-- Material input password -->
 <div class="md-form">
     <i class="fa fa-lock prefix grey-text"></i>
     <input type="password" id="password1" name="password1" class="form-control">
-    <label for="password1">Your password</label>
+    <label for="password1">创建密码</label>
 </div>
 <!-- Material input password -->
 <div class="md-form">
       <i class="fa fa-exclamation-triangle prefix grey-text"></i>
       <input type="password" id="password2" name="password2" class="form-control">
-      <label for="password2">Confirm your password</label>
+      <label for="password2">再次输入密码</label>
   </div>
 
 <div class="text-center mt-4">
-    <button class="btn btn-default" type="submit">Sign Up</button>
+    <button class="btn btn-default" type="submit">创建新账户</button>
 </div>
 </form>
 </div>

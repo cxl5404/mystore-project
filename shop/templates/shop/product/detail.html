@@ -1,10 +1,6 @@
 {% extends "shop/base_2.html" %}
 {% load static %}
 
-{% block title %}
-    {{ product.name }}
-{% endblock %}
-
 {% block content %}
 
     <!--Main layout-->
@@ -41,9 +37,6 @@
               </div>
 
               <p class="lead">
-                <span class="mr-1">
-                  <del>$200</del>
-                </span>
                 <span>${{ product.price }}</span>
               </p>
 
