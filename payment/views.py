@@ -8,6 +8,7 @@ from orders.models import Order
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 from django.template.loader import get_template
+from django.core.mail import EmailMultiAlternatives
 
 
 @csrf_exempt
@@ -27,13 +28,15 @@ def payment_process(request):
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
     if order.payment_method =='1' or order.payment_method == '2':
-        send_mail(
-             'Thanks for signing up!',
-              get_template('payment/email.html').render({'order_id': order_id}),
-          'cxl5404@gmail.com',
-          ['cxl5404@gmail.com'],
-          fail_silently = True
-         )
+        subject = 'hello'
+        from_email = 'cxl5404@gmail.com.com'
+        to = 'cxl5404@gmail.com'
+        text_content = 'This is an important message.'
+        html_content = '<p>An <strong>important</strong> message.</p>'
+        msg = EmailMultiAlternatives(subject,
+                             text_content, from_email, [to])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send(fail_silently=False)
         return render(request, 'payment/done.html')
 
     host = request.get_host()
