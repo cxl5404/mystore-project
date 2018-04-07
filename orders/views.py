@@ -23,7 +23,7 @@ def admin_order_pdf(request, order_id):
            "order_{}.pdf"'.format(order.id)
     weasyprint.HTML(string=html).write_pdf(response,
         stylesheets=[weasyprint.CSS(
-            settings.STATIC_ROOT + 'css/pdf.css')])
+            'css/pdf.css')])
     return response
 
 @staff_member_required
