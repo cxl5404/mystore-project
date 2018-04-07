@@ -33,7 +33,7 @@ def payment_process(request):
         from_email = 'cxl5404@gmail.com.com'
         to = 'cxl5404@gmail.com'
         text_content = 'This is an important message.'
-        html_content = render_to_string('payment/email.html', {'order_id': order_id,'created': 'order.created','f_name': 'order.first_name','address':order.address})
+        html_content = render_to_string('payment/email.html', {'order_id': order_id, 'pm': order.payment_method})
         msg = EmailMultiAlternatives(subject,
                              text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
