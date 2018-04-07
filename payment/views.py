@@ -26,7 +26,8 @@ def payment_process(request):
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
     if order.payment_method =='1' or order.payment_method == '2':
-        send_mail('Subject here', 'Here is the message.', 'cxl5404@gmail.com', ['cx5404@gmail.com'], fail_silently=False)
+        html_content="<h3>Thank you</h3><ul><li>p1</li><li>p1</li></ul>"
+        send_mail('Subject here', html_content, 'cxl5404@gmail.com', ['cxl5404@gmail.com'], fail_silently=False)
         return render(request, 'payment/done.html')
 
     host = request.get_host()
