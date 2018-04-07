@@ -16,18 +16,28 @@
   </head>
   <body>
     <div class="container">
-    <div class="text-center">
-      <img class="mb-4 "src="{% static 'smile.png' %}" alt="" width="72" height="72">
-    </div>
+      <!--Card-->
+          <div class="card">
 
+              <!--Card image-->
+              <div class="view overlay">
+                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
+                  <a href="#">
+                      <div class="mask rgba-white-slight"></div>
+                  </a>
+              </div>
 
-        <h1 align="center">Thank you!</h1>
-        <p align="center">Your order has been successfully completed. Your order number is <strong>{{ order.id }}</strong>.</p>
+              <!--Card content-->
+              <div class="card-body">
+                  <!--Title-->
+                  <h4 class="card-title">Card title</h4>
+                  <!--Text-->
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Button</a>
+              </div>
 
-
-    <div class="text-center mt-4">
-        <button class="btn btn-default">Continue to homepage</button>
-    </div>
+          </div>
+          <!--/.Card-->
     </div>
 
 
