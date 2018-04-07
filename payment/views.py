@@ -29,11 +29,7 @@ def payment_process(request):
     if order.payment_method =='1' or order.payment_method == '2':
         send_mail(
              'Thanks for signing up!',
-              get_template('payment/email.html').render(
-                 Context({
-                     'order_id': order_id
-                      })
-                ),
+              get_template('payment/email.html').render({'order_id': order_id}),
           'cxl5404@gmail.com',
           ['cxl5404@gmail.com'],
           fail_silently = True
