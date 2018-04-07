@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 
 
 @csrf_exempt
