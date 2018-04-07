@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from paypal.standard.forms import PayPalPaymentsForm
 from orders.models import Order
 from django.views.decorators.csrf import csrf_exempt
+from django.core.mail import send_mail
 
 
 @csrf_exempt
@@ -25,6 +26,7 @@ def payment_process(request):
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
     if order.payment_method =='1' or order.payment_method == '2':
+        send_mail('Subject here', 'Here is the message.', 'cxl5404@gmail.com', ['cx5404@gmail.com'], fail_silently=False)
         return render(request, 'payment/done.html')
 
     host = request.get_host()
