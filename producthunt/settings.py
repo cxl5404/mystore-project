@@ -144,6 +144,13 @@ CART_SESSION_ID = 'cart'
 PAYPAL_RECEIVER_EMAIL = 'cxl5404-facilitator@gmail.com'
 PAYPAL_TEST = True
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PASSWORD = 'Lincw6349705'
+EMAIL_HOST_USER = 'cxl5404@gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 try:
     from .local_settings import *
 except ImportError:
