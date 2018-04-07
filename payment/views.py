@@ -7,6 +7,7 @@ from paypal.standard.forms import PayPalPaymentsForm
 from orders.models import Order
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
+from django.template.loader import get_template
 
 
 @csrf_exempt
@@ -26,8 +27,17 @@ def payment_process(request):
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
     if order.payment_method =='1' or order.payment_method == '2':
-        html_content="<h3>Thank you</h3><ul><li>p1</li><li>p1</li></ul>"
-        send_mail('Subject here', html_content, 'cxl5404@gmail.com', ['cxl5404@gmail.com'], fail_silently=False)
+        send_mail(
+             'Thanks for signing up!',
+              get_template('payment/email.html').render(
+                 Context({
+                     'order_id': order_id
+                      })
+                ),
+          'cxl5404@gmail.com',
+          ['cxl5404@gmail.com'],
+          fail_silently = True
+         )
         return render(request, 'payment/done.html')
 
     host = request.get_host()
