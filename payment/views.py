@@ -28,12 +28,15 @@ def payment_canceled(request):
 def payment_process(request):
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
+    order_created = order.created
+    first_name = order.first_name
+    last_name =order.last_name
     if order.payment_method =='1' or order.payment_method == '2':
         subject = 'hello'
         from_email = 'cxl5404@gmail.com.com'
         to = 'cxl5404@gmail.com'
         text_content = 'This is an important message.'
-        html_content = render_to_string('payment/email.html', {'order_id': order_id})
+        html_content = render_to_string('payment/email.html', {'order_id': order_id,'order_created':order_created})
         msg = EmailMultiAlternatives(subject,
                              text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
