@@ -1,0 +1,36 @@
+{% extends "shop/base_2.html" %}
+
+{% block title %}Pay using PayPal{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<style>
+  #id_return_url{ display: none;}
+</style>
+
+
+<div class="container">
+
+<div class="card">
+  <div class="card-body text-center">
+    <h2>支付方式{{ order.id }}</h2>
+    <br>
+    <div class="form-check">
+      <label class="form-check-label" for="exampleRadios3">
+        Paypal支付
+      </label>
+        {{ form.render }}
+    </div>
+
+  </div>
+</div>
+
+
+</div>
+<br>
+<br>
+  <h1>Pay using PayPal</h1>
+  {{ form.render }}
+{% endblock %}

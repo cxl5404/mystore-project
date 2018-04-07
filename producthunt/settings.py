@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'paypal.standard.ipn',
+    'payment.apps.PaymentConfig',
 
 
 ]
@@ -139,7 +141,8 @@ MEDIA_URL = '/media/'
 
 CART_SESSION_ID = 'cart'
 
-
+PAYPAL_RECEIVER_EMAIL = 'cxl5404@gmail.com'
+PAYPAL_TEST = True
 try:
     from .local_settings import *
 except ImportError:
