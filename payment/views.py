@@ -30,11 +30,11 @@ def payment_process(request):
     host = request.get_host()
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
-        'amount': order.get_total_cost()+order.get_total_cost()*Decimal('0.029')+Decimal('0.3'),
+        'amount': order.get_total_cost()+order.get_total_cost()*Decimal('0.029')+Decimal('0.350'),
         'item_name': 'Order {}'.format(order.id),
         'invoice': str(order.id),
         'currency_code': 'USD',
-        'notify_url': request.build_absolute_uri(reverse('paypal-ipn')),
+        'notify_url': 'http://{}{}'.format(host, reverse('paypal-ipn')),
         'return': request.build_absolute_uri(reverse('payment:done')),
         'cancel_return': request.build_absolute_uri(reverse('payment:canceled')),
        }

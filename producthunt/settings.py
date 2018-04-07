@@ -141,7 +141,7 @@ MEDIA_URL = '/media/'
 
 CART_SESSION_ID = 'cart'
 
-PAYPAL_RECEIVER_EMAIL = 'cxl5404@gmail.com'
+PAYPAL_RECEIVER_EMAIL = 'cxl5404-facilitator@gmail.com'
 PAYPAL_TEST = True
 try:
     from .local_settings import *
