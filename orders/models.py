@@ -1,10 +1,6 @@
 from django.db import models
 from shop.models import Product
 from datetime import datetime
-from decimal import Decimal
-from django.core.validators import MinValueValidator, MaxValueValidator
-from coupons.models import Coupon
-
 
 
 class Order(models.Model):
@@ -19,14 +15,6 @@ class Order(models.Model):
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
     payment_method = models.CharField(max_length=100)
-    coupon = models.ForeignKey(Coupon,
-                               related_name='orders',
-                               null=True,
-                               blank=True,
-                               on_delete=models.CASCADE)
-    discount = models.IntegerField(default=0,
-                                   validators=[MinValueValidator(0),
-                                               MaxValueValidator(100)])
 
 
     class Meta:
@@ -36,8 +24,7 @@ class Order(models.Model):
         return 'Order {}'.format(self.id)
 
     def get_total_cost(self):
-        total_cost = sum(item.get_cost() for item in self.items.all())
-        return total_cost - total_cost * (self.discount / Decimal('100'))
+        return sum(item.get_cost() for item in self.items.all())
 
 
 class OrderItem(models.Model):
