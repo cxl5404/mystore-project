@@ -44,11 +44,11 @@
 
 
     <h1 align="center">Thank you!</h1>
-    <p align="center">Your order has been successfully completed. Your order number is <strong>{{ order.id }}</strong>.</p>
+    <p align="center">Your order has been successfully completed.</p>
 
 
 <div class="text-center mt-4">
-    <button class="btn btn-default">Continue to homepage</button>
+    <a class="btn btn-default" role="button" href="{% url "shop:product_list" %}">继续购物</a>
 </div>
 
 <br>
