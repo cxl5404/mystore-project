@@ -14,6 +14,8 @@ from django.template.loader import render_to_string
 
 @csrf_exempt
 def payment_done(request):
+    order_id = request.session.get('order_id')
+    order = get_object_or_404(Order, id=order_id)
     subject = 'Your Order Summary'
     from_email = 'cxl5404@gmail.com.com'
     to = 'cxl5404@gmail.com'
