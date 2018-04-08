@@ -33,7 +33,8 @@ def payment_process(request):
         from_email = 'cxl5404@gmail.com.com'
         to = 'cxl5404@gmail.com'
         text_content = 'This is an important message.'
-        html_content = render_to_string('payment/email.html', {'order_id': order_id, 'total': order.get_total_cost(),'data':order.created, 'f_name': order.first_name,'l_name': order.last_name})
+        html_content = render_to_string('payment/email.html', {'order_id': order_id, 'total': order.get_total_cost(),'data':order.created, 'f_name': order.first_name,'l_name': order.last_name
+        ,'pm': order.payment_method})
         msg = EmailMultiAlternatives(subject,
                              text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
@@ -44,7 +45,7 @@ def payment_process(request):
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
         'amount': order.get_total_cost()+order.get_total_cost()*Decimal('0.029')+Decimal('0.350'),
-        'item_name': 'Order {}'.format(order.id),
+        'item_name': 'Order# {}'.format(order.id),
         'invoice': str(order.id),
         'currency_code': 'USD',
         'notify_url': 'http://{}{}'.format(host, reverse('paypal-ipn')),
