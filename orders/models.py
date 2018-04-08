@@ -22,10 +22,12 @@ class Order(models.Model):
     coupon = models.ForeignKey(Coupon,
                                related_name='orders',
                                null=True,
-                               blank=True)
+                               blank=True,
+                               on_delete=models.CASCADE)
     discount = models.IntegerField(default=0,
                                    validators=[MinValueValidator(0),
-                                               MaxValueValidator(100)])
+                                               MaxValueValidator(100)],
+                                               on_delete=models.CASCADE)
 
 
     class Meta:
