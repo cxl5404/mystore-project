@@ -65,12 +65,9 @@
             <div class="card">
 
               <!--Card image-->
-              <div class="view overlay">
-                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" class="img-thumbnail" alt="">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
+
+                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" class="img-fluid" alt="">
+
               <!--Card image-->
 
               <!--Card content-->
