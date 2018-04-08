@@ -1,8 +1,6 @@
 from django.db import models
 from shop.models import Product
 from datetime import datetime
-from django.core.validators import MinValueValidator, MaxValueValidator
-from coupons.models import Coupon
 
 
 class Order(models.Model):
@@ -17,10 +15,7 @@ class Order(models.Model):
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
     payment_method = models.CharField(max_length=100)
-    coupon = models.ForeignKey(Coupon,
-                               related_name='orders',
-                               null=True,
-                               blank=True,on_delete=models.CASCADE)
+
 
     class Meta:
         ordering = ('-created',)
