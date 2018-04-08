@@ -1,6 +1,6 @@
 from django.db import models
 from shop.models import Product
-from django.utils import timezone
+from datetime import datetime
 
 
 class Order(models.Model):
