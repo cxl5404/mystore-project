@@ -1,6 +1,6 @@
 from django.db import models
 from shop.models import Product
-from django.utils.timezone.now()
+from django.utils import timezone
 
 
 class Order(models.Model):
