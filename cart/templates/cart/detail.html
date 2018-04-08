@@ -64,10 +64,17 @@
         <span></span>
         <strong><a href="{% url "shop:product_list" %}" >继续购物 </a></strong>
       </li>
+      {% if user.is_authenticated %}
       <li class="list-group-item d-flex justify-content-between">
         <span></span>
         <a href="{% url "orders:order_create" %}"> 去结算</a>
       </li>
+      {% else %}
+      <li class="list-group-item d-flex justify-content-between">
+        <span></span>
+        <a href="{% url 'login' %}"> 去结算</a>
+      </li>
+
         </ul>
         <!-- Cart -->
 
