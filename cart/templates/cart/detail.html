@@ -57,7 +57,7 @@
             <span class="text-muted">                    <form action="{% url "cart:cart_add" product.id %}" method="post">
                         {{ item.update_quantity_form.quantity }}
                         {{ item.update_quantity_form.update }}
-                        <button type="submit" class="btn btn-outline-white waves-effect btn-sm">+</button>
+                        <button type="submit" class="btn btn-outline-danger btn-sm">+</button>
 
                         {% csrf_token %}
                     </form></span>
