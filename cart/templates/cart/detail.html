@@ -117,11 +117,11 @@
             <div class="text-success">
               <h6 class="my-0">运费</h6>
             </div>
-            <span class="text-success">+$7</span>
+            <span class="text-success">+$7.00</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>合计总额 (USD)</span>
-            <strong>${{ cart.get_total_price_after_discount|floatformat:"2" }}</strong>
+            <strong>${{ cart.get_total_price_with_shippingfee|floatformat:"2" }}</strong>
           </li>
         </ul>
         <!-- Cart -->

@@ -91,3 +91,6 @@ class Cart(object):
 
     def get_total_price_after_discount(self):
         return self.get_total_price() - self.get_discount()
+
+    def get_total_price_with_shippingfee(self):
+        return self.get_total_price() - self.get_discount()-7
