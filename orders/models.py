@@ -1,5 +1,6 @@
 from django.db import models
 from shop.models import Product
+from django.utils.timezone.now()
 
 
 class Order(models.Model):
@@ -9,7 +10,7 @@ class Order(models.Model):
     address = models.CharField(max_length=250)
     postal_code = models.CharField(max_length=20)
     city = models.CharField(max_length=100)
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(default=datetime.now)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
     payment_method = models.CharField(max_length=100)
