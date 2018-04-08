@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'paypal.standard.ipn',
     'payment.apps.PaymentConfig',
+    'coupons.apps.CouponsConfig',
 
 
 ]

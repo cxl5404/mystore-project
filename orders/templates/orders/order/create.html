@@ -37,7 +37,7 @@
                 <li>{{ item.quantity }}x {{ item.product.name }} <span class="text-success">(商品金额：${{ item.total_price }})</span></li>
             {% endfor %}
         </ul>
-        <p  class="text-success">总金额: ${{ cart.get_total_price }}</p>
+        <p  class="text-success">总金额: ${{ cart.get_total_price }} - ${{ cart.get_discount|floatformat:"2" }}(Discount) = ${{ cart.get_total_price_after_discount|floatformat:"2" }}</p>
         <form action="." method="post" class="form-signin">
           {% csrf_token %}
           {% for field in form %}

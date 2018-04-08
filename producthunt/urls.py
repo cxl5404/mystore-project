@@ -13,5 +13,6 @@ urlpatterns = [
     path('orders/', include('orders.urls', namespace='orders')),
     url(r'^payment/', include('payment.urls', namespace='payment')),
     url(r'^paypal/', include('paypal.standard.ipn.urls')),
+    url(r'^coupons/', include('coupons.urls', namespace='coupons')),
     url(r'^', include('shop.urls', namespace='shop')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

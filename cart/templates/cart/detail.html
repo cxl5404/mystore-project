@@ -6,6 +6,25 @@
 {% endblock %}
 
 {% block content %}
+<style>
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+</style>
+
 
 <!--Main layout-->
 <main class="mt-5 pt-4">
@@ -68,27 +87,31 @@
 
         <!-- Cart -->
         <ul class="list-group mb-3 z-depth-1">
+          {% if cart.coupon %}
           <li class="list-group-item d-flex justify-content-between bg-light">
             <div class="text-success">
               <h6 class="my-0">折扣码</h6>
-              <small>EXAMPLECODE</small>
+              <small>{{ cart.coupon.code }}({{ cart.coupon.discount }}% off)</small>
             </div>
-            <span class="text-success">-$5</span>
+            <span class="text-success">- ${{ cart.get_discount|floatformat:"2" }}</span>
           </li>
+          {% endif %}
           <li class="list-group-item d-flex justify-content-between">
             <span>合计总额 (USD)</span>
-            <strong>${{ cart.get_total_price }}</strong>
+            <strong>${{ cart.get_total_price_after_discount|floatformat:"2" }}</strong>
           </li>
         </ul>
         <!-- Cart -->
 
         <!-- Promo code -->
-        <form class="card p-2">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="折扣码">
-            <div class="input-group-append">
-              <button type="submit" class="btn pink lighten-3">使用</button>
-            </div>
+        <form class="card p-2" action="{% url "coupons:apply" %}" method="post">
+          <div class="md-form">
+            <h6>折扣码：</h6>
+            {{ coupon_apply_form }}
+            {% csrf_token %}
+          </div>
+          <div class="input-group-append">
+            <button type="submit" class="btn pink lighten-3">使用</button>
           </div>
         </form>
         <!-- Promo code -->

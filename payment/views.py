@@ -29,7 +29,7 @@ def payment_process(request):
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
     if order.payment_method =='1' or order.payment_method == '2':
-        subject = 'hello'
+        subject = 'Your Order Summary'
         from_email = 'cxl5404@gmail.com.com'
         to = 'cxl5404@gmail.com'
         text_content = 'This is an important message.'
