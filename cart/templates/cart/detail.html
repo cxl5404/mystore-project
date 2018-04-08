@@ -50,11 +50,10 @@
               {% with product=item.product %}
               <li class="list-group-item d-flex justify-content-between lh-condensed">
                 <div>
-                  <h6 class="my-0">{{ product.name }}</h6>
+                  <h6 class="my-0">{{ product.name }}x{{ item.quantity}}</h6>
                   <small class="text-muted"><a href="{% url "cart:cart_remove" product.id %}">删除</a></small>
                 </div>
-                <span class="text-muted">x{{ item.quantity}}</span>
-                <span class="text-muted">&nbsp;&nbsp;</span>
+
                 <span class="text-muted"> ${{ item.total_price }}</span>
               </li>
 <!--
