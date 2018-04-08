@@ -54,13 +54,6 @@
               <h6 class="my-0">${{ item.price }}/each x {{ item.quantity}}</h6>
               <small class="text-muted">{{ product.name }}</small>
             </div>
-            <span class="text-muted">                    <form action="{% url "cart:cart_add" product.id %}" method="post">
-
-                        
-                        <button type="submit" class="btn btn-outline-danger btn-sm">+</button>
-
-                        {% csrf_token %}
-                    </form></span>
             <span class="text-muted"><a href="{% url "cart:cart_remove" product.id %}"><i class="fa fa-times" aria-hidden="true"></i></a></span>
             <span class="text-muted">&nbsp;&nbsp;</span>
             <span class="text-muted"> ${{ item.total_price }}</span>
