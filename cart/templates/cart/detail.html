@@ -57,8 +57,8 @@
             <span class="text-muted">                    <form action="{% url "cart:cart_add" product.id %}" method="post">
                         {{ item.update_quantity_form.quantity }}
                         {{ item.update_quantity_form.update }}
-                        <i class="fa fa-times" aria-hidden="true" type="submit"></i>
-                        
+                        <button type="submit" class="btn btn-outline-danger waves-effect btn-sm">更新</button>
+                      
                         {% csrf_token %}
                     </form></span>
             <span class="text-muted"><a href="{% url "cart:cart_remove" product.id %}"><i class="fa fa-times" aria-hidden="true"></i></a></span>
