@@ -10,11 +10,11 @@ class Order(models.Model):
     address = models.CharField(max_length=250)
     postal_code = models.CharField(max_length=20)
     city = models.CharField(max_length=100)
-    state = models.CharField(max_length=100,default='PA')
+    state = models.CharField(max_length=50,default='PA')
     created = models.DateTimeField(default=datetime.now)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
-    payment_method = models.CharField(max_length=100)
+    payment_method = models.IntegerField(required=True,max_value=3)
 
 
     class Meta:
