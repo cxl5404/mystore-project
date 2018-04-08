@@ -14,7 +14,7 @@ class Order(models.Model):
     created = models.DateTimeField(default=datetime.now)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
-    payment_method = models.IntegerField(required=True,max_value=3)
+    payment_method = models.IntegerField(required=True)
 
 
     class Meta:
