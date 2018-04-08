@@ -49,7 +49,7 @@ def payment_process(request):
         'invoice': str(order.id),
         'currency_code': 'USD',
         'notify_url': 'http://{}{}'.format(host, reverse('paypal-ipn')),
-        'return': request.build_absolute_uri(reverse('orders:created')),
+        'return': request.build_absolute_uri(reverse('payment:done')),
         'cancel_return': request.build_absolute_uri(reverse('payment:canceled')),
        }
     form = PayPalPaymentsForm(initial=paypal_dict)
