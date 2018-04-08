@@ -113,9 +113,15 @@
             <span class="text-success">- ${{ cart.get_discount|floatformat:"2" }}</span>
           </li>
           {% endif %}
+          <li class="list-group-item d-flex justify-content-between bg-light">
+            <div class="text-success">
+              <h6 class="my-0">运费</h6>
+            </div>
+            <span class="text-success">+$7</span>
+          </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>合计总额 (USD)</span>
-            <strong>${{ cart.get_total_price_after_discount|floatformat:"2" }}</strong>
+            <strong>${{ 7+cart.get_total_price_after_discount|floatformat:"2" }}</strong>
           </li>
         </ul>
         <!-- Cart -->
