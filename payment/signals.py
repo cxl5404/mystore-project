@@ -22,7 +22,7 @@ def payment_notification(sender, **kwargs):
         # create invoice e-mail
         subject = 'My Shop - Invoice nr. {}'.format(order.id)
         message = 'Please, find attached the invoice for your recent purchase.'
-        email = EmailMessage(subject, message, 'cxl5404@gmail.com', [order.email])
+        email = EmailMessage(subject, message, 'cxl5404@gmail.c', [order.email])
 
         # generate PDF
         html = render_to_string('orders/order/pdf.html', {'order': order})
