@@ -32,7 +32,7 @@ def payment_process(request):
         subject = 'Your Order Summary'
         from_email = 'cxl5404@gmail.com.com'
         to = 'cxl5404@gmail.com'
-        text_content = 'This is an important message.'
+        text_content = 'This is your order summary.'
         html_content = render_to_string('payment/email.html', {'order_id': order_id, 'total': order.get_total_cost(),'data':order.created, 'f_name': order.first_name,'l_name': order.last_name
         ,'pm': order.payment_method, 'address':order.address, 'city':order.city, 'zipcode':order.postal_code,'state':order.state})
         msg = EmailMultiAlternatives(subject,
@@ -40,6 +40,7 @@ def payment_process(request):
         msg.attach_alternative(html_content, "text/html")
         msg.send(fail_silently=False)
         return render(request, 'orders/order/created.html')
+
 
     host = request.get_host()
     paypal_dict = {
@@ -53,5 +54,16 @@ def payment_process(request):
         'cancel_return': request.build_absolute_uri(reverse('payment:canceled')),
        }
     form = PayPalPaymentsForm(initial=paypal_dict)
+    subject = 'Your Order Summary'
+    from_email = 'cxl5404@gmail.com.com'
+    to = 'cxl5404@gmail.com'
+    text_content = 'This is your order summary.'
+    html_content = render_to_string('payment/email.html', {'order_id': order_id, 'total': order.get_total_cost(),'data':order.created, 'f_name': order.first_name,'l_name': order.last_name
+    ,'pm': order.payment_method, 'address':order.address, 'city':order.city, 'zipcode':order.postal_code,'state':order.state})
+    msg = EmailMultiAlternatives(subject,
+                         text_content, from_email, [to])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send(fail_silently=False)
+    
     return render(request, 'payment/process.html', {'order': order,
                                                     'form':form})
