@@ -39,7 +39,7 @@ def payment_process(request):
                              text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
         msg.send(fail_silently=False)
-        return render(request, 'payment/done.html')
+        return render(request, 'orders/order/create.html')
 
     host = request.get_host()
     paypal_dict = {
