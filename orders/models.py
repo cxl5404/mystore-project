@@ -26,8 +26,7 @@ class Order(models.Model):
                                on_delete=models.CASCADE)
     discount = models.IntegerField(default=0,
                                    validators=[MinValueValidator(0),
-                                               MaxValueValidator(100)],
-                                               on_delete=models.CASCADE)
+                                               MaxValueValidator(100)])
 
 
     class Meta:
