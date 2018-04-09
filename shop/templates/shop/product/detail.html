@@ -70,7 +70,11 @@
 
           <!--Grid column-->
           <div class="col-md-6 text-center">
-
+            {% for c in categories %}
+            <li  {% if category.slug == c.slug %} class="nav-item active" {% endif %}>
+              <a class="nav-link" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+            </li>
+            {% endfor %}
             <h4 class="my-4 h4">热销商品</h4>
 
           </div>
