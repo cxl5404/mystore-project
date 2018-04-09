@@ -71,7 +71,7 @@
           <!--Grid column-->
           <div class="col-md-6 text-center">
             {% for c in categories %}
-            {% if c.slug ==  product.category.slug %}
+            {% if c ==  product.category %}
             {% for product in products %}
             <h5>{{ product.name }}</h5>
             {% endfor %}
