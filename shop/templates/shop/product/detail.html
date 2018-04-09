@@ -1,8 +1,6 @@
 {% extends "shop/base_2.html" %}
 {% load static %}
-{% block title %}
-    {% if category %}{{ category.name }}{% else %}Products{% endif %}
-{% endblock %}
+
 {% block content %}
 
     <!--Main layout-->
@@ -72,20 +70,8 @@
 
           <!--Grid column-->
           <div class="col-md-6 text-center">
-            <ul class="navbar-nav mr-auto">
-              <li  {% if not category %} class="nav-item active" {% endif %}>
-                <a class="nav-link" href="{% url "shop:product_list" %}">All
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              {% for c in categories %}
-              <li  {% if category.slug == c.slug %} class="nav-item active" {% endif %}>
-                <a class="nav-link" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-              </li>
-              {% endfor %}
-            </ul>
-            <h4 class="my-4 h4">热销商品</h4>
 
+            <h4 class="my-4 h4">热销商品</h4>
 
 
           </div>
