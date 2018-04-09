@@ -70,6 +70,13 @@
 
           <!--Grid column-->
           <div class="col-md-6 text-center">
+            {% for c in categories %}
+            {% if product.category == c.slug %}
+            <h6>
+              <a class="nav-link" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+            </h6>
+            {% endif %}
+            {% endfor %}
 
             <h4 class="my-4 h4">热销商品</h4>
 
