@@ -57,7 +57,7 @@ def payment_process(request):
     host = request.get_host()
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
-        'amount': order.get_total_price_with_shippingfee()+order.get_total_price_with_shippingfee()*Decimal('0.029')+Decimal('0.350'),
+        'amount': order.get_total_cost()+order.get_total_cost()*Decimal('0.029')+Decimal('0.350'),
         'item_name': 'Order# {}'.format(order.id),
         'invoice': str(order.id),
         'currency_code': 'USD',
