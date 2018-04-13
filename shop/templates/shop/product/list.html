@@ -59,7 +59,7 @@
         <div class="row wow fadeIn">
           {% for product in products %}
           <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
+          <div class="col-lg-2 col-md-6 mb-6">
 
             <!--Card-->
             <div class="card">
@@ -74,7 +74,7 @@
               <div class="card-body text-center">
                 <!--Category & Title-->
                 <a href="" class="grey-text">
-                  <h5>{{ product.category }}</h5>
+                  <h6>{{ product.category }}</h6>
                 </a>
                 <h6>
                   <strong>
@@ -82,16 +82,16 @@
                   </strong>
                 </h6>
 
-                <h4 class="font-weight-bold blue-text">
+                <h5 class="font-weight-bold blue-text">
                   <strong>${{ product.price }}</strong>
-                </h4>
+                </h5>
 
               </div>
               <!--Card content-->
             </div>
             <!--Card-->
           </div>
-          {% if forloop.counter|divisibleby:4 %}
+          {% if forloop.counter|divisibleby:6 %}
           </div>
           <!--Grid column-->
           <div class="row wow fadeIn">
